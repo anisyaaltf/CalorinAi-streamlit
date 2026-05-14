@@ -25,8 +25,8 @@ h1, h2, h3, h4{
 }
 </style>
 """, unsafe_allow_html=True)
-df_main = pd.read_csv("df_bmi_final.csv")
-df_bmi = pd.read_csv("df_main_final.csv")
+df_main = pd.read_csv("df_main_final.csv")
+df_bmi = pd.read_csv("df_bmi_final.csv")
 
 st.sidebar.title("Kalorin AI Dashboard")
 
