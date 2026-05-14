@@ -105,25 +105,32 @@ elif menu == "BMI Calculator":
 elif menu == "EDA Visualization":
     st.title("EDA Visualization")
     st.subheader("Calories Distribution")
-    fig, ax = plt.subplots()
-    df_main['calories'].hist(ax=ax)
-    ax.set_xlabel('calories')
+    fig, ax = plt.subplots(figsize=(8,4))
+    ax.hist(
+        df_main['calories'],
+        bins=20, 
+    )
+    ax.set_title("Calories Distribution")
+    ax.set_xlabel('Calories')
     ax.set_ylabel('Frequency')
-    st.pyplot(fig)
+    
+    st.pyplot(fig, use_container_width=False)
+
     st.subheader("Top High Protein Foods")
 
     top_protein = df_main.sort_values(
         by='proteins',
         ascending=False
         ).head(10)
-    fig2, ax2 = plt.subplots()
-
+    fig2, ax2 = plt.subplots(figsize=(8,5))
     ax2.barh(
-        top_protein['name'],
-        top_protein['proteins']
-        )
+        top_protein['name'].head(10),
+        top_protein['proteins'].head(10),
+    )
+    ax2.set_title("Top High Protein Foods")
     ax2.set_xlabel('Protein (g)')
-    st.pyplot(fig2)
+
+    st.pyplot(fig2, use_container_width=False)
 
 # Food Recomendation
 elif menu == "Food Recomendation":
