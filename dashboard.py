@@ -41,17 +41,17 @@ menu = st.sidebar.selectbox(
     )
 if menu == "Home":
     st.markdown("""
-    <h1 style='text-align: center; color: #00C853;'>
+    <h1 style='text-align: center; color: #6BE675; font-size:60px;'>
                 Welcome to Kalorin AI Dashboard
                 </h1>
                 """, unsafe_allow_html=True)
     st.markdown("""
-    <h4 style='text-align: center; color: #gray;'>
+    <h4 style='text-align: center; color: #white;'>
                 AI Based Nutrition & BMI Recommendation System  
                 </h4>
                 """, unsafe_allow_html=True)
     st.write("")
-    col1, col2, col3 = st.columns([1, 2, 1])
+    col1, col2, col3 = st.columns([2, 2, 2])
     with col2:
         st.image(
         "kalorinLogo.png",
@@ -59,7 +59,9 @@ if menu == "Home":
     )
     st.write("")
     st.write("")
-    col1, col2, col3 = st.columns(3)
+    left, center, right = st.columns([1, 6, 1])
+    with center:
+        col1, col2, col3 = st.columns(3)
     with col1:
         st.info("""BMI Calculator""")
     with col2:
