@@ -28,7 +28,7 @@ if menu == "Home":
     - Food Recomendation
     """)
     st.image(
-        "https://cdn-icons-png.flaticon.com/512/1046/1046784.png",
+        "kalorinLogo.png",
         width=200
     )
 
