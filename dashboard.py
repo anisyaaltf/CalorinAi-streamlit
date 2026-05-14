@@ -145,12 +145,12 @@ elif menu == "Food Recomendation":
         #Underweight
         if bmi_input < 18.5:
             hasil = df_main[
-                df_main["food_category"] == "High Calorie"
+                df_main["food_category"] == "High Protein"
                 ]
         # normal
         elif bmi_input < 25:
             hasil = df_main[
-                df_main["food_category"] == "Regular"
+                df_main["food_category"] == "Healthy"
                 ]
         # overweight
         else:
