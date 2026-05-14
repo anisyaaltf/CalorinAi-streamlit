@@ -3,10 +3,10 @@ import pandas as pd
 import matplotlib.pyplot as plt     
 
 st.set_page_config(
-                   page_title="Dashboard Kalorin AI",
-                   page_icon=":bar_chart:",
-                   layout="wide"
-                   )
+    page_title="Dashboard Kalorin AI",
+    page_icon=":bar_chart:",
+    layout="wide"
+    )
 df_main = pd.read_csv("df_bmi_final.csv")
 df_bmi = pd.read_csv("df_main_final.csv")
 
@@ -27,10 +27,11 @@ if menu == "Home":
     - EDA Visualization
     - Food Recomendation
     """)
-set.image(
+    st.image(
         "https://cdn-icons-png.flaticon.com/512/1046/1046784.png",
         width=200
-)
+    )
+
 # BMI Calculator    
 elif menu == "BMI Calculator":
     st.title("BMI Calculator")
@@ -45,9 +46,10 @@ elif menu == "BMI Calculator":
     with col2:
         height = st.number_input(
             "Enter your height (cm)",
-            min_value=1000,
+            min_value=100,
             max_value=250, 
-            value=170)
+            value=170
+            )
     if st.button("Calculate BMI"):
         bmi = weight / ((height / 100) ** 2)
         st.success(f"Your BMI is: {bmi:.2f}")
@@ -109,7 +111,7 @@ elif menu == "Food Recomendation":
         # overweight
         else:
             hasil = df_main[
-                df_main["food_category"] == "Low Carb" |
+                (df_main["food_category"] == "Low Carb") |
                 (df_main["food_category"] == "Low sugar")
                 ]
         st.dataframe(
