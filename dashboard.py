@@ -105,7 +105,7 @@ elif menu == "BMI Calculator":
 elif menu == "EDA Visualization":
     st.title("EDA Visualization")
     st.subheader("Calories Distribution")
-    fig, ax = plt.subplots(figsize=(8,4))
+    fig, ax = plt.subplots(figsize=(8,5))
     ax.hist(
         df_main['calories'],
         bins=20, 
@@ -113,11 +113,11 @@ elif menu == "EDA Visualization":
     ax.set_title("Calories Distribution")
     ax.set_xlabel('Calories')
     ax.set_ylabel('Frequency')
-    
-    st.pyplot(fig, use_container_width=False)
+    plt.tight_layout()
+    st.pyplot(fig)
 
     st.subheader("Top High Protein Foods")
-
+    # visual top protein
     top_protein = df_main.sort_values(
         by='proteins',
         ascending=False
@@ -129,8 +129,57 @@ elif menu == "EDA Visualization":
     )
     ax2.set_title("Top High Protein Foods")
     ax2.set_xlabel('Protein (g)')
+    plt.tight_layout()
+    st.pyplot(fig2)
 
-    st.pyplot(fig2, use_container_width=False)
+    # Visual fat vs calories
+    st.subheader("Fat vs Calories")
+    fig3, ax3 = plt.subplots(figsize=(8,5))
+    ax3.scatter(
+        df_main['calories'],
+        df_main['fat'],
+        alpha=0.7
+    )
+    ax3.set_title("Fat vs Calories")
+    ax3.set_xlabel('Fat (g)')
+    ax3.set_ylabel('Calories')
+    plt.tight_layout()
+    st.pyplot(fig3)
+    # Visual BMI Category Distribution
+    st.subheader("BMI Category Distribution")
+    def kategori_bmi(bmi):
+        if bmi < 18.5:
+            return "Underweight"
+        elif bmi < 25:
+            return "Normal"
+        elif bmi < 30:
+            return "Overweight"
+        else:
+            return "Obesity"
+    df_bmi['Kategori'] = df_bmi['bmi'].apply(kategori_bmi)
+    fig4, ax4 = plt.subplots(figsize=(8,5))
+    df_bmi['Kategori'].value_counts().plot(
+        kind='bar',
+        ax=ax4,
+    )
+    ax4.set_title("BMI Category Distribution")
+    ax4.set_xlabel('BMI Category')
+    ax4.set_ylabel('Count')
+    plt.tight_layout()
+    st.pyplot(fig4)
+
+    # Visual Gender Distribution
+    st.subheader("Gender Distribution")
+    fig5, ax5 = plt.subplots(figsize=(8,5))
+    df_bmi['gender'].value_counts().plot(
+        kind='bar',
+        ax=ax5,
+    )
+    ax5.set_title("Gender Distribution")
+    ax5.set_xlabel('Gender')
+    ax5.set_ylabel('Count')
+    plt.tight_layout()
+    st.pyplot(fig5)
 
 # Food Recomendation
 elif menu == "Food Recomendation":
