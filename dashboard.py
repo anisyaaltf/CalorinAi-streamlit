@@ -107,7 +107,7 @@ elif menu == "EDA Visualization":
     st.subheader("Calories Distribution")
     fig, ax = plt.subplots()
     df_main['calories'].hist(ax=ax)
-    ax.set_xlabel('Calories')
+    ax.set_xlabel('calories')
     ax.set_ylabel('Frequency')
     st.pyplot(fig)
     st.subheader("Top High Protein Foods")
