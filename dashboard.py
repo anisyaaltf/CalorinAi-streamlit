@@ -7,8 +7,28 @@ st.set_page_config(
     page_icon=":bar_chart:",
     layout="wide"
     )
+st.markdown("""
+<style>
+.main{
+    background-color: #0E1117;
+}
+h1, h2, h3, h4{
+    font-family: sans-serif;
+}
+.stButtonBox>button{
+    border-radius:10px;
+    height: 3em;
+    width:100%
+    background-color: #00C853;
+    color: white;
+    font-size: 16px;
+}
+</style>
+""", unsafe_allow_html=True)
 df_main = pd.read_csv("df_bmi_final.csv")
 df_bmi = pd.read_csv("df_main_final.csv")
+
+st.sidebar.title("Kalorin AI Dashboard")
 
 menu = st.sidebar.selectbox(
     "Menu", 
@@ -20,17 +40,32 @@ menu = st.sidebar.selectbox(
     ]
     )
 if menu == "Home":
-    st.title("Welcome to Kalorin AI Dashboard")
-    st.write("""Kalorin AI & BMI Recommendation System 
-    fitur:
-    - BMI Calculatpr
-    - EDA Visualization
-    - Food Recomendation
-    """)
-    st.image(
+    st.markdown("""
+    <h1 style='text-align: center; color: #00C853;'>
+                Welcome to Kalorin AI Dashboard
+                </h1>
+                """, unsafe_allow_html=True)
+    st.markdown("""
+    <h4 style='text-align: center; color: #gray;'>
+                AI Based Nutrition & BMI Recommendation System  
+                </h4>
+                """, unsafe_allow_html=True)
+    st.write("")
+    col1, col2, col3 = st.columns([1, 2, 1])
+    with col2:
+        st.image(
         "kalorinLogo.png",
-        width=200
+        width=250
     )
+    st.write("")
+    st.write("")
+    col1, col2, col3 = st.columns(3)
+    with col1:
+        st.info("""BMI Calculator""")
+    with col2:
+        st.success("""EDA Visualization""")
+    with col3:
+        st.warning("""Food Recomendation""")
 
 # BMI Calculator    
 elif menu == "BMI Calculator":
