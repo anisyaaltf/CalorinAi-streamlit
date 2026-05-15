@@ -15,7 +15,7 @@ st.markdown("""
 h1, h2, h3, h4{
     font-family: sans-serif;
 }
-.stButtonBox>button{
+.stButton>button{
     border-radius:10px;
     height: 3em;
     width:100%
@@ -105,7 +105,7 @@ elif menu == "BMI Calculator":
 elif menu == "EDA Visualization":
     st.title("EDA Visualization")
     st.subheader("Calories Distribution")
-    fig, ax = plt.subplots(figsize=(8,5))
+    fig, ax = plt.subplots(figsize=(4,3))
     ax.hist(
         df_main['calories'],
         bins=20, 
@@ -114,7 +114,7 @@ elif menu == "EDA Visualization":
     ax.set_xlabel('Calories')
     ax.set_ylabel('Frequency')
     plt.tight_layout()
-    st.pyplot(fig)
+    st.pyplot(fig, use_container_width=True)
 
     st.subheader("Top High Protein Foods")
     # visual top protein
@@ -122,7 +122,7 @@ elif menu == "EDA Visualization":
         by='proteins',
         ascending=False
         ).head(10)
-    fig2, ax2 = plt.subplots(figsize=(8,5))
+    fig2, ax2 = plt.subplots(figsize=(4,3))
     ax2.barh(
         top_protein['name'].head(10),
         top_protein['proteins'].head(10),
@@ -130,11 +130,11 @@ elif menu == "EDA Visualization":
     ax2.set_title("Top High Protein Foods")
     ax2.set_xlabel('Protein (g)')
     plt.tight_layout()
-    st.pyplot(fig2)
+    st.pyplot(fig2, use_container_width=True)
 
     # Visual fat vs calories
     st.subheader("Fat vs Calories")
-    fig3, ax3 = plt.subplots(figsize=(8,5))
+    fig3, ax3 = plt.subplots(figsize=(4,3))
     ax3.scatter(
         df_main['calories'],
         df_main['fat'],
@@ -144,7 +144,8 @@ elif menu == "EDA Visualization":
     ax3.set_xlabel('Fat (g)')
     ax3.set_ylabel('Calories')
     plt.tight_layout()
-    st.pyplot(fig3)
+    st.pyplot(fig3, use_container_width=True)
+
     # Visual BMI Category Distribution
     st.subheader("BMI Category Distribution")
     def kategori_bmi(bmi):
@@ -166,11 +167,12 @@ elif menu == "EDA Visualization":
     ax4.set_xlabel('BMI Category')
     ax4.set_ylabel('Count')
     plt.tight_layout()
-    st.pyplot(fig4)
+    st.pyplot(fig4, use_container_width=True
+    )
 
     # Visual Gender Distribution
     st.subheader("Gender Distribution")
-    fig5, ax5 = plt.subplots(figsize=(8,5))
+    fig5, ax5 = plt.subplots(figsize=(4,3))
     df_bmi['gender'].value_counts().plot(
         kind='bar',
         ax=ax5,
