@@ -18,7 +18,7 @@ h1, h2, h3, h4{
 .stButton>button{
     border-radius:10px;
     height: 3em;
-    width:100%
+    width:100%;
     background-color: #00C853;
     color: white;
     font-size: 16px;
@@ -164,20 +164,48 @@ elif menu == "EDA Visualization":
         st.pyplot(fig4,
                   use_container_width=True
                  )
-        with col4:
-        # food category distribution
-            st.subheader("Food Category Distribution")
-            fig_food, ax_food = plt.subplots(figsize=(4,3))
-            df_main['food_category'].value_counts().plot(
-            kind='bar',
-            ax=ax_food,
-            )
+    with col4:
+    # food category distribution
+        st.subheader("Food Category Distribution")
+        fig_food, ax_food = plt.subplots(figsize=(4,3))
+        df_main['food_category'].value_counts().plot(
+        kind='bar',
+        ax=ax_food,
+        )
         ax_food.set_xlabel('Food Category')
         ax_food.set_ylabel('Count')
         plt.tight_layout()
         st.pyplot(fig_food,
                 use_container_width=True
-    )
+        )
+         # RFM  
+        st.subheader("Top Healthy Foods")
+        top_healthy = df_main.sort_values(
+            by='proteins',
+            ascending=False
+            )[
+                [
+                    'name',
+                    'calories',
+                    'proteins', 
+                    'carbohydrate',
+                    'fat'
+                ]
+            ].head(10)
+        st.dataframe(
+            top_healthy, 
+            use_container_width=True
+            )                  
+        
+        # ToP Protein Foods
+        st.subheader("Top High Protein Foods")
+        top_protein = df_main.sort_values(
+            by='proteins',
+            ascending=False
+            ).head(10)
+        st.bar_chart(top_protein.set_index('name')['proteins'])
+       
+
 # Food Recomendation
 elif menu == "Food Recomendation":
     st.title("Food Recomendation")
@@ -215,9 +243,3 @@ elif menu == "Food Recomendation":
                     ]
                     ].head(10)
                     )
-        st.subheader("Top High Protein Foods")
-        top_protein = df_main.sort_values(
-            by='proteins',
-            ascending=False
-            ).head(10)
-        st.bar_chart(top_protein.set_index('name')['proteins'])
