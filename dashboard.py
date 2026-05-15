@@ -138,23 +138,8 @@ elif menu == "EDA Visualization":
         st.pyplot(fig2,
               use_container_width=True
               )
-    col3, col4 = st.columns(2)
+    col3, col4 = st.columns(2)   
     with col3:
-    # Visual fat vs calories
-        st.subheader("Fat vs Calories")
-        fig3, ax3 = plt.subplots(figsize=(4,3))
-        ax3.scatter(
-            df_main['fat'],
-            df_main['calories'],
-            alpha=0.7
-        )
-        ax3.set_xlabel('Fat (g)')
-        ax3.set_ylabel('Calories')
-        plt.tight_layout()
-        st.pyplot(fig3,
-               use_container_width=True
-               )
-    with col4:
      # Visual BMI Category Distribution
         st.subheader("BMI Category Distribution")
         def kategori_bmi(bmi):
@@ -179,15 +164,14 @@ elif menu == "EDA Visualization":
         st.pyplot(fig4,
                   use_container_width=True
                  )
-    left, center, right = st.columns([1, 2, 1])
-    with center:
-    # food category distribution
-        st.subheader("Food Category Distribution")
-        fig_food, ax_food = plt.subplots(figsize=(4,3))
-        df_main['food_category'].value_counts().plot(
-        kind='bar',
-        ax=ax_food,
-        )
+        with col4:
+        # food category distribution
+            st.subheader("Food Category Distribution")
+            fig_food, ax_food = plt.subplots(figsize=(4,3))
+            df_main['food_category'].value_counts().plot(
+            kind='bar',
+            ax=ax_food,
+            )
         ax_food.set_xlabel('Food Category')
         ax_food.set_ylabel('Count')
         plt.tight_layout()
@@ -231,3 +215,9 @@ elif menu == "Food Recomendation":
                     ]
                     ].head(10)
                     )
+        st.subheader("Top High Protein Foods")
+        top_protein = df_main.sort_values(
+            by='proteins',
+            ascending=False
+            ).head(10)
+        st.bar_chart(top_protein.set_index('name')['proteins'])
