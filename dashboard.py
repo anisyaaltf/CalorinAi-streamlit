@@ -178,34 +178,34 @@ elif menu == "EDA Visualization":
         st.pyplot(fig_food,
                 use_container_width=True
         )
-        col5, col6 = st.columns(2)
-        with col5:
-         # RFM  
-            st.subheader("Top Healthy Foods")
-            top_healthy = df_main.sort_values(
-                by='proteins',
-                ascending=False
-                )[
-                    [
-                        'name',
-                        'calories',
-                        'proteins', 
-                        'carbohydrate',
-                        'fat'
-                    ]
-            ].head(10)
-            st.dataframe(
+    col5, col6 = st.columns(2)
+    with col5:
+        # RFM  
+        st.subheader("Top Healthy Foods")
+        top_healthy = df_main.sort_values(
+            by='proteins',
+            ascending=False
+        )[
+            [
+                'name',
+                'calories',
+                'proteins', 
+                'carbohydrate',
+                'fat'
+                ]
+        ].head(10)
+        st.dataframe(
                 top_healthy, 
                 use_container_width=True
             ) 
-        with col6:                 
-            # ToP Protein Foods
-            st.subheader("Top High Protein Foods")
-            top_protein = df_main.sort_values(
-                by='proteins',
-                ascending=False
-            ).head(10)
-            st.bar_chart(top_protein.set_index('name')['proteins'])
+    with col6:                 
+        # ToP Protein Foods
+        st.subheader("Top High Protein Foods")
+        top_protein = df_main.sort_values(
+            by='proteins',
+            ascending=False
+        ).head(10)
+        st.bar_chart(top_protein.set_index('name')['proteins'])
        
 
 # Food Recomendation
