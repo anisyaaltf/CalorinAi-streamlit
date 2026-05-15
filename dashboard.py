@@ -156,7 +156,7 @@ elif menu == "EDA Visualization":
             return "Overweight"
         else:
             return "Obesity"
-    df_bmi['Kategori'] = df_bmi['bmi'].apply(kategori_bmi)
+    df_bmi['Kategori'] = df_bmi['BMI'].apply(kategori_bmi)
     fig4, ax4 = plt.subplots(figsize=(8,5))
     df_bmi['Kategori'].value_counts().plot(
         kind='bar',
