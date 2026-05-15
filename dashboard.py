@@ -193,7 +193,7 @@ elif menu == "EDA Visualization":
                 'carbohydrate',
                 'fat'
                 ]
-        ].head(10)
+            ].head(10)
         st.dataframe(
                 top_healthy, 
                 use_container_width=True
