@@ -169,20 +169,19 @@ elif menu == "EDA Visualization":
     plt.tight_layout()
     st.pyplot(fig4, use_container_width=True
     )
-
-    # Visual Gender Distribution
-    st.subheader("Gender Distribution")
-    fig5, ax5 = plt.subplots(figsize=(4,3))
-    df_bmi['gender'].value_counts().plot(
+    # food category distribution
+    st.subheader("Food Category Distribution")
+    fig_food, ax_food = plt.subplots(figsize=(4,3))
+    df_main['food_category'].value_counts().plot(
         kind='bar',
-        ax=ax5,
+        ax=ax_food,
     )
-    ax5.set_title("Gender Distribution")
-    ax5.set_xlabel('Gender')
-    ax5.set_ylabel('Count')
+    ax_food.set_xlabel('Food Category')
+    ax_food.set_ylabel('Count')
     plt.tight_layout()
-    st.pyplot(fig5)
-
+    st.pyplot(fig_food,
+               use_container_width=True
+    )
 # Food Recomendation
 elif menu == "Food Recomendation":
     st.title("Food Recomendation")
