@@ -25,7 +25,7 @@ h1, h2, h3, h4{
 }
 </style>
 """, unsafe_allow_html=True)
-df_main = pd.read_csv("df_main_final.csv")
+df_nutrition = pd.read_csv("df_nutrition_final.csv")
 df_bmi = pd.read_csv("df_bmi_final.csv")
 
 st.sidebar.title("Kalorin AI Dashboard")
@@ -110,7 +110,7 @@ elif menu == "EDA Visualization":
         st.subheader("Calories Distribution")
         fig, ax = plt.subplots(figsize=(4,3))
         ax.hist(
-            df_main['calories'],
+            df_nutrition['calories'],
              bins=20, 
         )
         ax.set_title("Calories Distribution")
@@ -123,7 +123,7 @@ elif menu == "EDA Visualization":
     with col2:
         st.subheader("Top High Protein Foods")
         # visual top protein
-        top_protein = df_main.sort_values(
+        top_protein = df_nutrition.sort_values(
         by='proteins',
         ascending=False
         ).head(10)
@@ -168,7 +168,7 @@ elif menu == "EDA Visualization":
     # food category distribution
         st.subheader("Food Category Distribution")
         fig_food, ax_food = plt.subplots(figsize=(4,3))
-        df_main['food_category'].value_counts().plot(
+        df_nutrition['food_category'].value_counts().plot(
         kind='bar',
         ax=ax_food,
         )
@@ -182,7 +182,7 @@ elif menu == "EDA Visualization":
     with col5:
         # RFM  
         st.subheader("Top Healthy Foods")
-        top_healthy = df_main.sort_values(
+        top_healthy = df_nutrition.sort_values(
             by='proteins',
             ascending=False
         )[
@@ -201,7 +201,7 @@ elif menu == "EDA Visualization":
     with col6:                 
         # ToP Protein Foods
         st.subheader("Top High Protein Foods")
-        top_protein = df_main.sort_values(
+        top_protein = df_nutrition.sort_values(
             by='proteins',
             ascending=False
         ).head(10)
@@ -220,19 +220,19 @@ elif menu == "Food Recomendation":
     if st.button("Get Food Recommendations"):
         #Underweight
         if bmi_input < 18.5:
-            hasil = df_main[
-                df_main["food_category"] == "High Protein"
+            hasil = df_nutrition[
+                df_nutrition["food_category"] == "High Protein"
                 ]
         # normal
         elif bmi_input < 25:
-            hasil = df_main[
-                df_main["food_category"] == "Healthy"
+            hasil = df_nutrition[
+                df_nutrition["food_category"] == "Healthy"
                 ]
         # overweight
         else:
-            hasil = df_main[
-                (df_main["food_category"] == "Low Carb") |
-                (df_main["food_category"] == "Low sugar")
+            hasil = df_nutrition[
+                (df_nutrition["food_category"] == "Low Carb") |
+                (df_nutrition["food_category"] == "Healthy")
                 ]
         st.dataframe(
             hasil[
